@@ -20,6 +20,8 @@ namespace branch_hero
         {
             services.Configure<GitHubSettings>(Configuration.GetSection("GitHub"));
             services.AddControllers();
+
+            services.AddScoped<IWebhookHandler, WebhookHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
