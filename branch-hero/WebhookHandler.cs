@@ -8,7 +8,7 @@ namespace branch_hero
 {
     public interface IWebhookHandler
     {
-        public Task<bool> Handle(RepositoryEvent ev);
+        public Task<bool> Handle(WebhookEvent ev);
     }
 
     public class WebhookHandler : IWebhookHandler
@@ -23,9 +23,9 @@ namespace branch_hero
             };
         }
 
-        public async Task<bool> Handle(RepositoryEvent ev)
+        public async Task<bool> Handle(WebhookEvent ev)
         {
-            var repos = await githubClient.Repository.Get(ev.Repository.Id);
+            // Create branch protection
             return true;
         }
     }

@@ -16,7 +16,7 @@ namespace branch_hero.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(RepositoryEvent ev)
+        public async Task<IActionResult> Post(WebhookEvent ev)
         {
             await _webhookHandler.Handle(ev);
             return Ok();
