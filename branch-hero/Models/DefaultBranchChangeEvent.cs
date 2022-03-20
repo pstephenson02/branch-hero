@@ -2,12 +2,12 @@
 
 namespace branch_hero.Models
 {
-    public class RepositoryEditedEvent : RepositoryEvent
+    public class DefaultBranchChangeEvent : WebhookEvent
     {
-        public Changes Changes { get; set; }
+        public DefaultBranchChange Changes { get; set; }
     }
 
-    public class Changes
+    public class DefaultBranchChange
     {
         [JsonPropertyName("default_branch")]
         public DefaultBranch DefaultBranch { get; set; }

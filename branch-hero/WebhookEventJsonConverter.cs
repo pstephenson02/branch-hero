@@ -22,7 +22,14 @@ namespace branch_hero
                     switch (actionProperty.GetString())
                     {
                         case "edited":
-                            return JsonSerializer.Deserialize<RepositoryEditedEvent>(ref reader, options);
+                            if (jsonDocument.RootElement.TryGetProperty("changes", out var changedProperty))
+                            {
+                                if (changedProperty.TryGetProperty("default_branch", out _))
+                                {
+                                    return JsonSerializer.Deserialize<DefaultBranchChangeEvent>(ref reader, options);
+                                }
+                            }
+                            return JsonSerializer.Deserialize<RepositoryEvent>(ref reader, options);
                         default:
                             return JsonSerializer.Deserialize<RepositoryEvent>(ref reader, options);
                     }

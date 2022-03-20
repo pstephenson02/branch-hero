@@ -25,7 +25,14 @@ namespace branch_hero
 
         public async Task<bool> Handle(WebhookEvent ev)
         {
-            // Create branch protection
+            if (ev.GetType() == typeof(RefCreatedEvent) || ev.GetType() == typeof(DefaultBranchChangeEvent))
+            {
+                var branchProtectionSettings = new BranchProtectionRequiredReviewsUpdate(true, false, 1);
+                var bpRequest = new BranchProtectionSettingsUpdate(branchProtectionSettings);
+
+                await githubClient.Repository.Branch.UpdateBranchProtection(ev.Repository.Id, ev.Repository.DefaultBranch, bpRequest);
+            }
+
             return true;
         }
     }
