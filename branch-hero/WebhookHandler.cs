@@ -25,15 +25,34 @@ namespace branch_hero
 
         public async Task<bool> Handle(WebhookEvent ev)
         {
-            if (ev.GetType() == typeof(RefCreatedEvent) || ev.GetType() == typeof(DefaultBranchChangeEvent))
+            if (ev.GetType() == typeof(RefCreatedEvent))
             {
-                var branchProtectionSettings = new BranchProtectionRequiredReviewsUpdate(true, false, 1);
-                var bpRequest = new BranchProtectionSettingsUpdate(branchProtectionSettings);
+                RefCreatedEvent refCreatedEvent = (RefCreatedEvent)ev;
+                if (refCreatedEvent.IsFirstBranchInRepository())
+                {
+                    await ProtectDefaultBranch(refCreatedEvent.Repository.Id, refCreatedEvent.DefaultBranch);
+                }
+            }
 
-                await githubClient.Repository.Branch.UpdateBranchProtection(ev.Repository.Id, ev.Repository.DefaultBranch, bpRequest);
+            if (ev.GetType() == typeof(DefaultBranchChangeEvent))
+            {
+                // todo: Check if new default branch already has branch protection
+                await ProtectDefaultBranch(ev.Repository.Id, ev.Repository.DefaultBranch);
             }
 
             return true;
+        }
+
+        private async Task<BranchProtectionSettings> ProtectDefaultBranch(long repositoryId, string defaultBranchName)
+        {
+            var branchProtectionSettings = new BranchProtectionRequiredReviewsUpdate(
+                true, // Dismiss stale reviews on new commits
+                false, // Don't require codeowners reviews
+                1 // Required number of approvers
+            );
+            var bpRequest = new BranchProtectionSettingsUpdate(branchProtectionSettings);
+
+            return await githubClient.Repository.Branch.UpdateBranchProtection(repositoryId, defaultBranchName, bpRequest);
         }
     }
 }
