@@ -36,8 +36,22 @@ namespace branch_hero
 
             if (ev.GetType() == typeof(DefaultBranchChangeEvent))
             {
-                // todo: Check if new default branch already has branch protection
-                await ProtectDefaultBranch(ev.Repository.Id, ev.Repository.DefaultBranch);
+                // If the new default branch already has protection, just leave it
+                try
+                {
+                    await githubClient.Repository.Branch.GetBranchProtection(ev.Repository.Id, ev.Repository.DefaultBranch);
+                }
+                catch (Octokit.NotFoundException e)
+                {
+                    if ("Branch not protected".Equals(e.Message))
+                    {
+                        await ProtectDefaultBranch(ev.Repository.Id, ev.Repository.DefaultBranch);
+                    }
+                    else
+                    {
+                        throw e;
+                    }
+                }
             }
 
             return true;
