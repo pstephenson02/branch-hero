@@ -34,6 +34,8 @@ namespace branch_hero
 
             app.UseHttpsRedirection();
 
+            app.UseMiddleware<GitHubWebhookAuthenticationMiddleware>();
+
             app.UseRouting();
 
             app.UseAuthorization();
