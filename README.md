@@ -57,14 +57,12 @@ On the App Service page, take note of the public URL. We'll need this in our nex
 4. Return to your Branch Hero Azure App Service page from Step 2 (where we found the URL). In the navigation menu on the left, find **Configuration** under the **Settings** section. Add two new **Application settings**:
     * GITHUB__TOKEN - This should be your GitHub Personal Access Token (see [Prerequisites](#prerequisites))
     * GITHUB__WEBHOOKSECRET - The secret you created when setting up your GitHub Webhook.
-**Important**: Notice there are **two** underscores (_) in these config keys.
-Remember to click **Save** after creating your Application Settings.
+    * **Important**: Notice there are **two** underscores (_) in these config keys. Remember to click **Save** after creating your Application Settings.
 
 5. Finally, let's deploy the code. Again from the App Service page, find the **Deployment Center** under the **Deployment** section in the left nav.
     * In the Source field, select **GitHub**. If you're setting this up for the first time, you'll need to click **Authorize** and delegate access to your GitHub account to Azure.
     * After authorizing your Azure account with GitHub, select the **Organization** and **Repository** where you forked branch-hero from Step 1. Select the *main* **Branch**.
-    * Leave the rest of the options as-is, and click **Save*.
-<br /><br />
+    * Leave the rest of the options as-is, and click **Save**.
 <img src="assets/deployment-center.PNG" width="600" />
 At this point, Azure will commit a GitHub Actions workflow file and a GitHub Actions build should kick off from your forked repository and actually deploy the code. You can verify whether this worked or not by going to your repository homepage on GitHub and clicking on the **Actions** section:
 <br /><br />
