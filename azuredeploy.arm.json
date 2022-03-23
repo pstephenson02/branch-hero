@@ -83,7 +83,8 @@
                       "name": "CURRENT_STACK",
                       "value": "dotnetcore"
                     }
-                  ]
+                  ],
+                  "netFrameworkVersion": "v5.0"
                 }
               },
               "identity": {
