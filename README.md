@@ -1,4 +1,4 @@
-# Branch Hero
+# Branch Hero :guardsman:
 
 Branch Hero is here to protect your GitHub repository default branches across an entire organization. It automatically applies the following GitHub branch protection rules for all new default branches across repositories in an organization:
 
@@ -75,3 +75,8 @@ Remember to click <b>Save</b> after creating your Application Settings.
 At this point, Azure will commit a GitHub Actions workflow file and a GitHub Actions build should kick off from your forked repository and actually deploy the code. You can verify whether this worked or not by going to your repository homepage on GitHub and clicking on the **Actions** section:
 <br /><br />
 <img src="assets/github-actions.PNG" width="600" />
+<br /><br />
+If your actions build was successful, that's it! You've successfully deploy Branch Hero and are officially protected :) If you happen to make any changes or commits to your new forked branch-hero repository, this GitHub Actions workflow will build and deploy the app again each time to your Azure App Service.
+
+## About Me
+Hi there! I'm Phil, the author of this project. I'm a former software engineer turned solutions architect. Thanks for checking out my project. If you have any feedback or suggestions, send me a note or create an issue on this repo. I'd love to hear from you. Cheers.
