@@ -35,7 +35,7 @@ You'll be prompted first to login to Azure. Then, you should see the following p
 <img src="azuredeploy.PNG" width="600" />
 <br />
 The default values will create a unique name for your instance, but you can of course change these to your liking as well.<br /><br />
-Once your deployment is complete, use the Azure search bar and find your new Azure App Service. If you used the default settings above, your App Service name should look something like: `branch-hero20220322T220512Z`
+Once your deployment is complete, use the Azure search bar and find your new Azure App Service. If you used the default settings above, your App Service name should look something like: <b>branch-hero20220322T220512Z</b>
 <br />
 On the App Service page, take note of the public URL. We'll need this in our next step.
 <br />
