@@ -29,7 +29,6 @@ The simplest way to run Branch Hero is to follow these instructions to deploy an
 ![GitHub Fork](https://docs.github.com/assets/cb-6294/images/help/repository/fork_button.jpg)
 
 2. Next, click the **Deploy to Azure** button to deploy the Azure infrastructure:
-<br />
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fpstephenson02%2Fbranch-hero%2Fmain%2Fazuredeploy.arm.json" target="_blank">
   <img src="https://aka.ms/deploytoazurebutton"/>
 </a>
