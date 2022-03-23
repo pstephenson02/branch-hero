@@ -64,7 +64,7 @@ On the App Service page, take note of the public URL. We'll need this in our nex
     * After authorizing your Azure account with GitHub, select the **Organization** and **Repository** where you forked branch-hero from Step 1. Select the *main* **Branch**.
     * Leave the rest of the options as-is, and click **Save**.
 <img src="assets/deployment-center.PNG" width="600" />
-At this point, Azure will commit a GitHub Actions workflow file and a GitHub Actions build should kick off from your forked repository and actually deploy the code. You can verify whether this worked or not by going to your repository homepage on GitHub and clicking on the **Actions** section:
+At this point, Azure will commit a GitHub Actions workflow file and a GitHub Actions build should kick off from your forked repository and actually deploy the code. You can verify whether this worked or not by going to your repository homepage on GitHub and clicking on the <b>Actions</b> section:
 <br /><br />
 <img src="assets/github-actions.PNG" width="600" />
 If your actions build was successful, that's it! You've successfully deploy Branch Hero and are officially protected :) If you happen to make any changes or commits to your new forked branch-hero repository, this GitHub Actions workflow will build and deploy the app again each time to your Azure App Service.
