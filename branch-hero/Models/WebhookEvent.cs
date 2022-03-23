@@ -6,5 +6,6 @@ namespace branch_hero.Models
     public abstract class WebhookEvent
     {
         public Repository Repository { get; set; }
+        public Sender Sender { get; set; }
     }
 }

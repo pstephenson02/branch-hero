@@ -31,6 +31,7 @@ namespace branch_hero
                 if (refCreatedEvent.IsFirstBranchInRepository())
                 {
                     await ProtectDefaultBranch(refCreatedEvent.Repository.Id, refCreatedEvent.DefaultBranch);
+                    await CreateGitHubIssueAndNotifyUser(refCreatedEvent.Repository.Id, $"@{refCreatedEvent.Sender.Login}: A new default branch, `{refCreatedEvent.DefaultBranch}`, was created and now protected.");
                 }
             }
 
@@ -46,6 +47,7 @@ namespace branch_hero
                     if ("Branch not protected".Equals(e.Message))
                     {
                         await ProtectDefaultBranch(ev.Repository.Id, ev.Repository.DefaultBranch);
+                        await CreateGitHubIssueAndNotifyUser(ev.Repository.Id, $"@{ev.Sender.Login}: The default branch was changed to `{ev.Repository.DefaultBranch}` and is now protected.");
                     }
                     else
                     {
@@ -67,6 +69,15 @@ namespace branch_hero
             var bpRequest = new BranchProtectionSettingsUpdate(branchProtectionSettings);
 
             return await githubClient.Repository.Branch.UpdateBranchProtection(repositoryId, defaultBranchName, bpRequest);
+        }
+
+        private async Task CreateGitHubIssueAndNotifyUser(long repositoryId, string message)
+        {
+            var newIssue = new NewIssue("branch-hero: New branch protection added.")
+            {
+                Body = message
+            };
+            await githubClient.Issue.Create(repositoryId, newIssue);
         }
     }
 }
